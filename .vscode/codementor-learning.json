@@ -1,0 +1,30 @@
+{
+  "HTML-001": {
+    "occurrences": 1814,
+    "confidence": 1,
+    "mastered_explicitly": false,
+    "first_seen": "2026-10-29T23:20:44.281Z",
+    "last_seen": "2026-10-30T23:35:35.286Z"
+  },
+  "CSS-002": {
+    "occurrences": 220,
+    "confidence": 1,
+    "mastered_explicitly": false,
+    "first_seen": "2026-10-29T23:48:31.668Z",
+    "last_seen": "2026-10-30T05:34:46.007Z"
+  },
+  "CSS-003": {
+    "occurrences": 276,
+    "confidence": 1,
+    "mastered_explicitly": false,
+    "first_seen": "2026-10-30T05:34:26.059Z",
+    "last_seen": "2026-10-30T23:35:40.748Z"
+  },
+  "HTML-003": {
+    "occurrences": 50,
+    "confidence": 1,
+    "mastered_explicitly": false,
+    "first_seen": "2026-10-30T08:30:27.334Z",
+    "last_seen": "2026-10-30T23:35:35.129Z"
+  }
+}

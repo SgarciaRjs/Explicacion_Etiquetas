@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fuentes: Barlow Condensed (títulos), IBM Plex Sans (texto), JetBrains Mono (código) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Explicación de Etiquetas HTML</title>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <!-- Botón e submenú exclusivo de Primeros Pasos -->
+                    <a href="javascript:void(0)" onclick="showPage('pasos')">Primeros Pasos</a>
+                    <ul>
+                        <li><a href="#que-es" onclick="showPage('pasos')">¿Qué es HTML?</a></li>
+                        <li><a href="#estructura-basica" onclick="showPage('pasos')">Estructura básica</a></li>
+                        <li><a href="#anatomia" onclick="showPage('pasos')">Anatomía de una etiqueta</a></li>
+                    </ul>
+                </li>
+                <!-- Pestaña independiente para el Catálogo -->
+                <li><a href="javascript:void(0)" onclick="showPage('diccionario')">Catálogo de Etiquetas</a></li>
+                <!-- Pestaña independiente para Mi Diario -->
+                <li><a href="javascript:void(0)" onclick="showPage('diario')">Mi Diario de Aprendizaje</a></li>
+            </ul>
+            <!-- Píldora que se desliza de un botón al otro (se posiciona con el script del final) -->
+            <div class="indicator" aria-hidden="true"></div>
+        </nav>
+    </header>
+    <main>
+
+        <h1>Web Didáctica</h1>
+
+        <!-- ======================= PRIMEROS PASOS ======================= -->
+
+        <section id="pasos">
+            <h2>Primeros Pasos con HTML</h2>
+            <div class="card">
+                <p>
+                    Aquí aprenderás tres cosas clave para empezar tu camino como Full Stack: <br>
+                    1. Cómo se abre y se cierra una etiqueta.<br>
+                    2. Cómo estructurar un documento desde la cabeza hasta los pies.<br>
+                    3. Cómo organizar tus textos para que Google entienda tu página.
+                </p>
+            </div>
+
+            <section id="que-es">
+                <h3>¿Qué es HTML?</h3>
+                <div class="card">
+                    <p><strong>HTML</strong> significa <em>HyperText Markup Language</em> (Lenguaje de Marcado de
+                        Hipertexto).</p>
+                    <ul>
+                        <li><strong>Hipertexto:</strong> texto que contiene enlaces para saltar de una página a otra.
+                        </li>
+                        <li><strong>Marcado:</strong> se "marca" el contenido con etiquetas que le dicen al navegador
+                            qué es cada cosa (un título, un párrafo, una imagen...).</li>
+                    </ul>
+                    <p>No es un lenguaje de programación (no tiene lógica, ni variables, ni condiciones): solo describe
+                        la <strong>estructura y el significado</strong> del contenido.</p>
+                    <p><strong>La analogía de la casa:</strong> HTML es la estructura (paredes, techo, puertas), CSS es
+                        la pintura y la decoración, y JavaScript es la electricidad que hace que las cosas funcionen.
+                    </p>
+                </div>
+            </section>
+
+            <section id="estructura-basica">
+                <h3>Estructura básica</h3>
+                <div class="card">
+                    <p>Todo documento HTML tiene este esqueleto. Es lo primero que escribes en cualquier página:</p>
+
+                    <!-- Ventana estilo VS Code -->
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">index.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="14"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de la pestaña</title>
+</head>
+<body>
+    <h1>Hola mundo</h1>
+</body>
+</html></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+
+                    <p><strong>Pieza por pieza:</strong></p>
+                    <ul>
+                        <li><strong>&lt;!DOCTYPE html&gt;:</strong> le avisa al navegador que usas HTML5.</li>
+                        <li><strong>&lt;html lang="es"&gt;:</strong> encierra todo el documento e indica el idioma.
+                        </li>
+                        <li><strong>&lt;head&gt;:</strong> la "cabeza": información que NO se ve en la página
+                            (título de la pestaña, codificación, configuración).</li>
+                        <li><strong>&lt;body&gt;:</strong> el "cuerpo": todo lo que el usuario sí ve.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="anatomia">
+                <h3>Anatomía de una etiqueta</h3>
+                <div class="card">
+                    <p>Una etiqueta casi siempre tiene tres partes: <strong>apertura</strong>,
+                        <strong>contenido</strong> y <strong>cierre</strong>.
+                    </p>
+
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">ejemplo.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly
+                                rows="2"><a href="https://google.com" target="_blank">Ir a Google</a></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li><strong>Etiqueta de apertura:</strong> <code>&lt;a ...&gt;</code></li>
+                        <li><strong>Atributos:</strong> información extra dentro de la apertura, con forma
+                            <code>nombre="valor"</code> (aquí <code>href</code> y <code>target</code>).
+                        </li>
+                        <li><strong>Contenido:</strong> lo que va en medio ("Ir a Google").</li>
+                        <li><strong>Etiqueta de cierre:</strong> igual que la de apertura pero con una barra:
+                            <code>&lt;/a&gt;</code>
+                        </li>
+                    </ul>
+                    <p><strong>Etiquetas autocerradas (vacías):</strong> algunas no tienen contenido, así que no se
+                        cierran. Ejemplos: <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>,
+                        <code>&lt;input&gt;</code>, <code>&lt;meta&gt;</code>.
+                    </p>
+                    <p><strong>Anidamiento:</strong> las etiquetas se pueden meter unas dentro de otras, pero siempre
+                        se cierran en orden inverso al que se abrieron (como cajas dentro de cajas):</p>
+
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">anidamiento.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="2"><p>Esto es <strong>importante</strong></p></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ======================= CATÁLOGO ======================= -->
+
+        <section id="diccionario">
+            <h2>Catálogo de Etiquetas</h2>
+            <p style="text-align: center; margin-bottom: 25px;">Una guía de referencia rápida con las etiquetas
+                esenciales que necesitas conocer en HTML, ordenadas por categorías:</p>
+
+            <!-- Botones de Pestañas -->
+            <div class="catalog-tabs">
+                <button class="tab-btn active" onclick="switchCategory(event, 'fundamentales')">Las
+                    Fundamentales</button>
+                <button class="tab-btn" onclick="switchCategory(event, 'semantica')">Estructura y Semántica</button>
+                <button class="tab-btn" onclick="switchCategory(event, 'textos')">Textos y Títulos</button>
+                <button class="tab-btn" onclick="switchCategory(event, 'multimedia')">Enlaces y Multimedia</button>
+                <button class="tab-btn" onclick="switchCategory(event, 'listas')">Listas</button>
+                <button class="tab-btn" onclick="switchCategory(event, 'formularios')">Formularios</button>
+                <button class="tab-btn" onclick="switchCategory(event, 'tablas')">Tablas</button>
+            </div>
+
+            <!-- GRUPO: FUNDAMENTALES -->
+            <div id="fundamentales" class="category-group active-group">
+                <h3>Las Fundamentales (El Esqueleto)</h3>
+
+                <div class="card">
+                    <h4>&lt;!DOCTYPE html&gt; (La Declaración)</h4>
+                    <p><strong>¿Qué es?:</strong> No es una etiqueta como tal. Es la primera línea del archivo y le
+                        dice al navegador "este documento está escrito en HTML5".</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">doctype.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="1"><!DOCTYPE html></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> siempre va en la línea 1, antes de cualquier otra cosa.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;html&gt; (La Raíz)</h4>
+                    <p><strong>¿Qué es?:</strong> La caja que envuelve absolutamente todo el documento. Solo tiene dos
+                        hijos directos: <code>&lt;head&gt;</code> y <code>&lt;body&gt;</code>.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">html.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="4"><html lang="es">
+    ...
+</html></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> el atributo <code>lang</code> ayuda a los lectores de pantalla y a Google
+                        a saber en qué idioma está la página.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;head&gt; (La Cabeza)</h4>
+                    <p><strong>¿Qué es?:</strong> La zona de "configuración" de la página. Lo que pones aquí no se
+                        muestra en pantalla, pero el navegador y los buscadores lo leen.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">head.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="5"><head>
+    <meta charset="UTF-8">
+    <title>Mi página</title>
+</head></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> aquí también se enlaza el CSS con <code>&lt;link rel="stylesheet"
+                            href="estilos.css"&gt;</code>.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;meta&gt; (La Información Oculta)</h4>
+                    <p><strong>¿Qué es?:</strong> Etiqueta autocerrada que da datos sobre la página. Los dos metas que
+                        no pueden faltar: <code>charset</code> (para que se vean bien las tildes y la ñ) y
+                        <code>viewport</code> (para que se adapte a celulares).
+                    </p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">meta.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="2"><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;title&gt; (El Título de la Pestaña)</h4>
+                    <p><strong>¿Qué es?:</strong> El texto que aparece en la pestaña del navegador y como título azul
+                        en los resultados de Google. Va dentro del <code>&lt;head&gt;</code>.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">title.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="1"><title>Web Didáctica de HTML</title></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> no confundir con <code>&lt;h1&gt;</code>, que es el título visible dentro
+                        de la página.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;body&gt; (El Cuerpo)</h4>
+                    <p><strong>¿Qué es?:</strong> Todo lo que el usuario ve y toca: textos, imágenes, botones,
+                        menús. Solo puede haber un <code>&lt;body&gt;</code> por página.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">body.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="4"><body>
+    <h1>Hola</h1>
+</body></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRUPO: ESTRUCTURA Y SEMÁNTICA -->
+            <div id="semantica" class="category-group">
+                <h3>Estructura y Semántica (El Plano de la Casa)</h3>
+                <p>Las etiquetas <strong>semánticas</strong> son las que tienen significado: le dicen al navegador, a
+                    Google y a los lectores de pantalla <em>qué es</em> cada zona de la página.</p>
+
+                <div class="card">
+                    <h4>&lt;header&gt; (El Encabezado)</h4>
+                    <p><strong>¿Qué es?:</strong> Es el techo o la franja superior de tu página web. Suele contener el
+                        título principal, el logo y el menú de navegación.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">header.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="4"><header>
+    <h1>Mi Web</h1>
+    <nav>...</nav>
+</header></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> también se puede usar dentro de un <code>&lt;article&gt;</code> o
+                        <code>&lt;section&gt;</code> para encabezar solo esa parte.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;nav&gt; (La Navegación)</h4>
+                    <p><strong>¿Qué es?:</strong> El mapa o la caja especial que guarda los enlaces principales para que
+                        la gente se mueva por el sitio.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">nav.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="3"><nav>
+    <ul><li><a href="#">Inicio</a></li></ul>
+</nav></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> úsalo solo para los enlaces importantes, no para cualquier grupo de
+                        enlaces.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;main&gt; (El Contenido Principal)</h4>
+                    <p><strong>¿Qué es?:</strong> La caja más importante: encierra el contenido único y central de la
+                        página.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">main.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="3"><main>
+    <section>Aquí va lo gordo de la web</section>
+</main></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> solo puede haber <strong>un</strong> <code>&lt;main&gt;</code> por
+                        página, y <strong>no incluye</strong> el <code>&lt;header&gt;</code> ni el
+                        <code>&lt;footer&gt;</code> (van fuera de él).
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;section&gt; (La Sección)</h4>
+                    <p><strong>¿Qué es?:</strong> Un capítulo o bloque <em>temático</em> dentro del contenido. Casi
+                        siempre lleva su propio título (<code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>...).</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">section.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="3"><section id="contacto">
+    <h2>Contáctame</h2>
+</section></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> no es lo mismo que <code>&lt;article&gt;</code>. Una sección es parte de
+                        un todo; un artículo puede leerse solo.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;article&gt; (El Artículo)</h4>
+                    <p><strong>¿Qué es?:</strong> Un contenido <em>independiente</em> que tendría sentido aunque lo
+                        sacaras de la página: una noticia, una entrada de blog, un comentario, una tarjeta de
+                        producto.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">article.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="4"><article>
+    <h2>Mi primera entrada</h2>
+    <p>Hoy aprendí HTML.</p>
+</article></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;aside&gt; (El Lateral)</h4>
+                    <p><strong>¿Qué es?:</strong> Contenido relacionado pero secundario: una barra lateral, un dato
+                        curioso, publicidad, enlaces recomendados.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">aside.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="3"><aside>
+    <p>Dato curioso: HTML nació en 1991.</p>
+</aside></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;footer&gt; (El Pie de Página)</h4>
+                    <p><strong>¿Qué es?:</strong> Los cimientos de la página: la franja inferior con derechos de autor,
+                        contacto, redes sociales y enlaces legales.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">footer.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="3"><footer>
+    <p>&copy; 2026 - Mi sitio web</p>
+</footer></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> <code>&amp;copy;</code> es una "entidad HTML" que muestra el símbolo
+                        &copy;.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;div&gt; (La Caja Genérica)</h4>
+                    <p><strong>¿Qué es?:</strong> Un contenedor <strong>sin significado</strong>. Sirve para agrupar
+                        elementos cuando necesitas darles estilo o acomodarlos (como nuestras <em>cards</em>).</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">div.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="3"><div class="card">
+    <p>Texto agrupado</p>
+</div></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> úsalo como último recurso, solo cuando ninguna etiqueta semántica
+                        (<code>header</code>, <code>section</code>, <code>article</code>...) encaje.</p>
+                </div>
+            </div>
+
+            <!-- GRUPO: TEXTOS Y TÍTULOS -->
+            <div id="textos" class="category-group">
+                <h3>Textos y Títulos (El Contenido Escrito)</h3>
+
+                <div class="card">
+                    <h4>&lt;h1&gt; al &lt;h6&gt; (Los Títulos)</h4>
+                    <p><strong>¿Qué es?:</strong> Los carteles de la página. El <code>&lt;h1&gt;</code> es el título
+                        principal y el <code>&lt;h6&gt;</code> el de menor jerarquía.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">titulos.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="3"><h1>Título principal</h1>
+<h2>Subtítulo de sección</h2>
+<h3>Subtítulo dentro de la sección</h3></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> usa un solo <code>&lt;h1&gt;</code> por página, no te saltes niveles
+                        (de h2 a h4), y no los uses solo para "hacer el texto grande": para eso está el CSS.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;p&gt; (El Párrafo)</h4>
+                    <p><strong>¿Qué es?:</strong> La caja clásica para escribir bloques de texto y explicaciones
+                        normales.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">parrafo.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="1"><p>Hola, esto es un párrafo explicativo.</p></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> el navegador ignora los saltos de línea y los espacios repetidos que
+                        escribas en el código.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;strong&gt; y &lt;em&gt; (Importancia y Énfasis)</h4>
+                    <p><strong>¿Qué es?:</strong> Dan <em>significado</em> al texto. <code>&lt;strong&gt;</code> marca
+                        algo de <strong>fuerte importancia</strong> (se ve en negrita) y <code>&lt;em&gt;</code> marca
+                        <em>énfasis</em> (se ve en cursiva).
+                    </p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">formato.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly
+                                rows="1"><p>Esto es <strong>muy importante</strong> y esto es <em>enfático</em></p></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> negrita y cursiva son solo el aspecto visual por defecto. Si solo quieres
+                        el estilo sin significado existen <code>&lt;b&gt;</code> e <code>&lt;i&gt;</code>, pero lo
+                        ideal es controlarlo con CSS.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;br&gt; (El Salto de Línea)</h4>
+                    <p><strong>¿Qué es?:</strong> Etiqueta autocerrada que obliga a pasar a la siguiente línea dentro
+                        de un mismo párrafo (útil en direcciones o poemas).</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">br.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="2"><p>Línea uno<br>Línea dos</p></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> no lo uses para separar párrafos ni para dar espacio: para eso usa
+                        <code>&lt;p&gt;</code> y CSS.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;code&gt; y &lt;pre&gt; (El Código)</h4>
+                    <p><strong>¿Qué es?:</strong> <code>&lt;code&gt;</code> marca un fragmento de código dentro de una
+                        frase. <code>&lt;pre&gt;</code> respeta los espacios y saltos de línea tal como los escribes,
+                        ideal para bloques de código.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">codigo.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="5"><p>Usa la etiqueta <code>&lt;p&gt;</code> para párrafos.</p>
+
+<pre><code>function saludar() {
+    alert("Hola");
+}</code></pre></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> para mostrar los símbolos <code>&lt;</code> y <code>&gt;</code> como
+                        texto debes escribir <code>&amp;lt;</code> y <code>&amp;gt;</code>.</p>
+                </div>
+            </div>
+
+            <!-- GRUPO: ENLACES Y MULTIMEDIA -->
+            <div id="multimedia" class="category-group">
+                <h3>Enlaces y Multimedia (La Interacción y la Vista)</h3>
+
+                <div class="card">
+                    <h4>&lt;a&gt; (El Enlace / Ancla)</h4>
+                    <p><strong>¿Qué es?:</strong> El puente mágico que permite hacer clic para ir a otra página web o a
+                        otra sección interna.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">enlaces.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="5"><!-- Enlace externo, en pestaña nueva -->
+<a href="https://google.com" target="_blank" rel="noopener noreferrer">Ir a Google</a>
+
+<!-- Enlace interno (salta al elemento con id="contacto") -->
+<a href="#contacto">Ir a contacto</a></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Atributos clave:</strong></p>
+                    <ul>
+                        <li><code>href</code>: a dónde lleva el enlace (una URL, un archivo o un <code>#id</code>).
+                        </li>
+                        <li><code>target="_blank"</code>: lo abre en una pestaña nueva.</li>
+                        <li><code>rel="noopener noreferrer"</code>: por seguridad, siempre acompaña a
+                            <code>_blank</code>.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;img&gt; (La Imagen)</h4>
+                    <p><strong>¿Qué es?:</strong> Una etiqueta solitaria (autocerrada) que sirve para insertar fotos o
+                        ilustraciones en la pantalla.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">imagen.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly
+                                rows="1"><img src="imagen.jpg" alt="Descripción de la foto" width="300"></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Atributos clave:</strong></p>
+                    <ul>
+                        <li><code>src</code>: la ruta o URL de la imagen.</li>
+                        <li><code>alt</code>: texto que describe la imagen. Es <strong>obligatorio en la
+                                práctica</strong>: lo leen los lectores de pantalla, se muestra si la imagen falla y
+                            ayuda al SEO.</li>
+                        <li><code>width</code> / <code>height</code>: el tamaño en píxeles.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- GRUPO: LISTAS -->
+            <div id="listas" class="category-group">
+                <h3>Listas (El Orden)</h3>
+
+                <div class="card">
+                    <h4>&lt;ul&gt; y &lt;li&gt; (Lista con Viñetas)</h4>
+                    <p><strong>¿Qué es?:</strong> <code>&lt;ul&gt;</code> (<em>unordered list</em>) crea una lista con
+                        viñetas donde el orden no importa. Cada elemento va en un <code>&lt;li&gt;</code>
+                        (<em>list item</em>).</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">ul.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="5"><ul>
+    <li>Manzana</li>
+    <li>Pera</li>
+    <li>Uva</li>
+</ul></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> un <code>&lt;li&gt;</code> solo debe ir dentro de un
+                        <code>&lt;ul&gt;</code> o un <code>&lt;ol&gt;</code>. Tus menús de navegación también son
+                        listas.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;ol&gt; (Lista Numerada)</h4>
+                    <p><strong>¿Qué es?:</strong> <code>&lt;ol&gt;</code> (<em>ordered list</em>) numera los
+                        elementos automáticamente. Úsala cuando el orden importa: pasos, rankings, recetas.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">ol.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="5"><ol>
+    <li>Crear el archivo index.html</li>
+    <li>Escribir la estructura básica</li>
+    <li>Abrirlo en el navegador</li>
+</ol></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> puedes anidar una lista dentro de un <code>&lt;li&gt;</code> para crear
+                        submenús, como en el menú de esta página.</p>
+                </div>
+            </div>
+
+            <!-- GRUPO: FORMULARIOS -->
+            <div id="formularios" class="category-group">
+                <h3>Formularios y Datos (La Entrada de Información)</h3>
+
+                <div class="card">
+                    <h4>&lt;form&gt; (El Formulario)</h4>
+                    <p><strong>¿Qué es?:</strong> La caja de recogida de datos. Agrupa todos los campos y define qué
+                        pasa cuando el usuario los envía.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">form.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="4"><form action="/enviar" method="post">
+    ...campos aquí...
+</form></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Atributos clave:</strong> <code>action</code> es la dirección a la que se envían los
+                        datos y <code>method</code> es cómo se envían (<code>get</code> o <code>post</code>).</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;label&gt; e &lt;input&gt; (La Etiqueta y la Casilla)</h4>
+                    <p><strong>¿Qué es?:</strong> El <code>&lt;input&gt;</code> genera la casilla donde el usuario
+                        escribe y el <code>&lt;label&gt;</code> es el rótulo que dice qué hay que escribir. Se unen con
+                        <code>for</code> (en el label) e <code>id</code> (en el input).
+                    </p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">input.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="6"><label for="correo">Correo:</label>
+<input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+
+<label for="clave">Contraseña:</label>
+<input type="password" id="clave" name="clave"></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Atributos clave:</strong></p>
+                    <ul>
+                        <li><code>type</code>: el tipo de dato (<code>text</code>, <code>email</code>,
+                            <code>password</code>, <code>number</code>, <code>checkbox</code>...).
+                        </li>
+                        <li><code>name</code>: el nombre con el que viajan los datos al enviarlos.</li>
+                        <li><code>placeholder</code>: texto de ayuda que desaparece al escribir.</li>
+                        <li><code>required</code>: hace el campo obligatorio.</li>
+                    </ul>
+                    <p><strong>Ojo:</strong> un input sin label es una mala práctica de accesibilidad.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;textarea&gt; (El Texto Largo)</h4>
+                    <p><strong>¿Qué es?:</strong> Una casilla grande para escribir varias líneas, como un mensaje o un
+                        comentario.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">textarea.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="2">&lt;label for="mensaje"&gt;Mensaje:&lt;/label&gt;
+&lt;textarea id="mensaje" name="mensaje" rows="4"&gt;&lt;/textarea&gt;</textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> a diferencia de <code>&lt;input&gt;</code>, sí necesita etiqueta de
+                        cierre. <code>rows</code> define cuántas líneas se ven.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;select&gt; y &lt;option&gt; (La Lista Desplegable)</h4>
+                    <p><strong>¿Qué es?:</strong> Un menú desplegable donde el usuario elige una opción de varias.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">select.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="6"><label for="pais">País:</label>
+<select id="pais" name="pais">
+    <option value="cr">Costa Rica</option>
+    <option value="mx">México</option>
+</select></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> el <code>value</code> es lo que se envía; el texto entre las etiquetas es
+                        lo que se ve.</p>
+                </div>
+
+                <div class="card">
+                    <h4>&lt;button&gt; (El Botón)</h4>
+                    <p><strong>¿Qué es?:</strong> Un botón en el que se puede hacer clic. Dentro de un formulario, el
+                        botón <code>submit</code> lo envía.</p>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">button.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="2"><button type="submit">Enviar</button>
+<button type="button">No envía nada</button></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> si no pones <code>type</code>, dentro de un form se comporta como
+                        <code>submit</code>. Sé explícito.
+                    </p>
+                </div>
+            </div>
+
+            <!-- GRUPO: TABLAS -->
+            <div id="tablas" class="category-group">
+                <h3>Tablas (Datos Organizados)</h3>
+
+                <div class="card">
+                    <h4>&lt;table&gt;, &lt;tr&gt;, &lt;th&gt; y &lt;td&gt; (La Tabla)</h4>
+                    <p><strong>¿Qué es?:</strong> Sirven para mostrar datos en filas y columnas, como una hoja de
+                        cálculo.</p>
+                    <ul>
+                        <li><code>&lt;table&gt;</code>: la tabla completa.</li>
+                        <li><code>&lt;tr&gt;</code> (<em>table row</em>): una fila.</li>
+                        <li><code>&lt;th&gt;</code> (<em>table header</em>): una celda de encabezado (en negrita y
+                            centrada).</li>
+                        <li><code>&lt;td&gt;</code> (<em>table data</em>): una celda de datos normal.</li>
+                    </ul>
+                    <p><strong>Ejemplo:</strong></p>
+                    <div class="vscode-window">
+                        <div class="vscode-titlebar">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                    class="dot green"></span></div>
+                            <span class="filename">tabla.html</span>
+                        </div>
+                        <div class="interactive-box">
+                            <textarea readonly rows="12"><table>
+    <thead>
+        <tr><th>Etiqueta</th><th>Función</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>&lt;p&gt;</td><td>Párrafo</td></tr>
+        <tr><td>&lt;a&gt;</td><td>Enlace</td></tr>
+    </tbody>
+</table></textarea>
+                            <button class="btn-copiar"
+                                onclick="navigator.clipboard.writeText(this.previousElementSibling.value)"><span
+                                    class="texto">Copiar</span><span class="icono"><svg fill="white"
+                                        viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z">
+                                        </path>
+                                    </svg></span></button>
+                        </div>
+                    </div>
+                    <p><strong>Ojo:</strong> <code>&lt;thead&gt;</code> agrupa el encabezado y
+                        <code>&lt;tbody&gt;</code> el cuerpo. Las tablas son para <em>datos</em>, nunca para acomodar
+                        el diseño de la página. Para unir celdas existen <code>colspan</code> y
+                        <code>rowspan</code>.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ======================= DIARIO ======================= -->
+
+        <section id="diario">
+            <h2>Mi Diario de Aprendizaje</h2>
+
+            <!-- Texto de introducción sobre tu proceso y métodos de estudio -->
+            <div class="card">
+                <p><strong>¿Cómo está siendo mi camino hacia Full Stack?</strong></p>
+                <p>Aprender desarrollo web ha sido un viaje de paciencia, lógica y mucha práctica constante. Al
+                    principio, entender cómo interactuaban las etiquetas y la estructura invisible de una página parecía
+                    un acertijo, pero poco a poco las piezas empezaron a encajar.</p>
+                <p><strong>¿Qué me ha ayudado en este proceso?</strong></p>
+                <ul>
+                    <li><strong>Aprender haciendo:</strong> En lugar de solo leer teoría, construir proyectos reales
+                        desde cero me ha permitido chocar con errores (¡como olvidar cerrar una etiqueta!) y aprender a
+                        solucionarlos.</li>
+                    <li><strong>La analogía y la visualización:</strong> Imaginar el código como los planos de una casa
+                        o cajas de Lego facilita muchísimo comprender la semántica.</li>
+                    <li><strong>Dividir los problemas en partes pequeñas:</strong> Ir paso a paso, primero estructurando
+                        con HTML y luego pensando en la interacción y el diseño.</li>
+                </ul>
+                <p>Este diario refleja ese crecimiento: pasar de entender las etiquetas básicas a construir aplicaciones
+                    reales y funcionales.</p>
+            </div>
+
+            <!-- Card interactiva con el proyecto en vivo -->
+            <div class="card">
+                <h3>Mi Creación en Vivo: Arte-Sana CR</h3>
+                <p>Aquí puedes interactuar directamente con uno de mis proyectos desarrollados. Esta ventana carga el
+                    sitio web real:</p>
+
+                <!-- Visor interactivo con iframe estilo ventana de VS Code -->
+                <div class="vscode-window" style="padding: 0; background: #000;">
+                    <div class="vscode-titlebar">
+                        <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span
+                                class="dot green"></span></div>
+                        <span class="filename">https://arte-sanacr.com</span>
+                    </div>
+                    <iframe src="https://arte-sanacr.com" width="100%" height="400" loading="lazy" style="border: none;"
+                        title="Proyecto Arte-Sana CR"></iframe>
+                </div>
+
+                <p style="margin-top: 10px; font-size: 0.9em;">
+                    <em>¿No carga correctamente dentro del marco? Puedes visitarlo directamente haciendo clic aquí:
+                        <a href="https://arte-sanacr.com" target="_blank"
+                            rel="noopener noreferrer">arte-sanacr.com</a></em>
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Creado con esfuerzo y pasión en mi camino como Full Stack.</p>
+        <p>
+            Visita mi proyecto: <a href="https://arte-sanacr.com" target="_blank" rel="noopener noreferrer">Arte-Sana
+                CR</a>
+        </p>
+    </footer>
+
+    <!-- Script para navegación entre páginas y cambio de pestañas en el catálogo -->
+    <script>
+        // Cambiar entre Vistas Principales (Primeros Pasos, Catálogo, Diario)
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('main > section');
+            pages.forEach(page => {
+                page.style.display = 'none';
+            });
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.style.display = 'block';
+            }
+        }
+
+        // Cambiar de categoría dentro del Catálogo de Etiquetas
+        function switchCategory(evt, categoryId) {
+            const groups = document.getElementsByClassName("category-group");
+            for (let i = 0; i < groups.length; i++) {
+                groups[i].classList.remove("active-group");
+            }
+
+            const buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            const selectedGroup = document.getElementById(categoryId);
+            if (selectedGroup) {
+                selectedGroup.classList.add("active-group");
+            }
+
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add("active");
+            }
+        }
+
+        // Mostrar 'Primeros Pasos' por defecto al cargar la página
+        document.addEventListener("DOMContentLoaded", function () {
+            showPage('pasos');
+        });
+    </script>
+
+    <script>
+        // Indicador deslizante de la nav: sigue al mouse (o al foco del teclado) y vuelve al botón activo al soltar
+        (function () {
+            const nav = document.querySelector('header nav');
+            const ind = nav && nav.querySelector('.indicator');
+            if (!nav || !ind) return;
+
+            const topLinks = () => Array.from(nav.querySelectorAll(':scope > ul > li > a'));
+            const topOf = el => {
+                const li = el.closest('nav > ul > li');
+                return li ? li.querySelector(':scope > a') : null;
+            };
+
+            let active = topLinks()[0];   // Botón de la página actual (Primeros Pasos al cargar)
+            let current = null;           // Botón donde está ahora el indicador
+
+            // Mide el botón y mueve la píldora hasta él. "instant" salta sin animar (carga y cambio de tamaño)
+            function place(link, instant) {
+                if (!link) return;
+                const r = link.getBoundingClientRect();
+                const n = nav.getBoundingClientRect();
+                if (instant) ind.style.transition = 'none';
+                ind.style.width = r.width + 'px';
+                ind.style.height = r.height + 'px';
+                ind.style.transform = 'translate(' + (r.left - n.left) + 'px,' + (r.top - n.top) + 'px)';
+                if (instant) { void ind.offsetWidth; ind.style.transition = ''; }
+                topLinks().forEach(a => a.classList.toggle('is-on', a === link));
+                current = link;
+            }
+
+            nav.addEventListener('mouseover', e => { const a = topOf(e.target); if (a && a !== current) place(a); });
+            nav.addEventListener('mouseleave', () => place(active));
+            nav.addEventListener('focusin', e => { const a = topOf(e.target); if (a && a !== current) place(a); });
+            nav.addEventListener('focusout', e => { if (!nav.contains(e.relatedTarget)) place(active); });
+            nav.addEventListener('click', e => { const a = topOf(e.target); if (a) { active = a; place(a); } });
+
+            const refresh = () => place(current || active, true);
+            place(active, true);
+            nav.classList.add('has-indicator');
+            window.addEventListener('resize', refresh);
+            window.addEventListener('load', refresh);
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh); // Al cargar las fuentes cambia el ancho de los botones
+        })();
+    </script>
+</body>
+
+</html>

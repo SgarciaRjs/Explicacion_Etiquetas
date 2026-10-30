@@ -1,0 +1,761 @@
+/* ======================= PALETA (Negro + Lima) ======================= */
+
+:root {
+    --black:      #0D0D0D;                  /* Negro neutro: base de la página */
+    --lime:       #D4FF3F;                  /* Lima: único color de acento. Sobre #0D0D0D da 16.8:1 y el negro sobre lima también */
+    --lime-dark:  #C2F02B;                  /* Lima un poco más profunda, para dar volumen a los degradados del botón */
+    --lime-glow:  rgba(212, 255, 63, 0.28); /* Resplandor lima para sombras y bordes */
+    --text:       #E5E5E5;                  /* Texto principal (15.4:1 sobre el negro) */
+    --text-soft:  #A3A3A3;                  /* Texto secundario (7.7:1 sobre el negro) */
+
+    /* Tipografía: tres fuentes con un trabajo cada una */
+    --font-display: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;   /* Títulos: condensada y pesada, como la de tu referencia negro + lima */
+    --font-body:    'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; /* Texto corrido y menús: técnica y muy legible */
+    --font-mono:    'JetBrains Mono', 'Fira Code', Consolas, monospace;      /* Código */
+}
+
+/* ======================= BASE Y MODO OSCURO ======================= */
+
+body {
+    margin: 0;
+    font-family: var(--font-body);          /* IBM Plex Sans en lugar de Inter */
+    background-color: var(--black);         /* Negro neutro #0D0D0D en lugar del azul oscuro anterior */
+    color: var(--text);
+}
+
+/* Los botones no heredan la fuente solos: sin esto salían en Arial */
+button {
+    font-family: inherit;
+}
+
+/* Al seleccionar texto con el mouse, el resaltado es lima con letra negra */
+::selection {
+    background: var(--lime);
+    color: var(--black);
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ======================= ESCALA DE TÍTULOS ======================= */
+/* Escala ~1.5x entre niveles: 80 > 52 > 28 > 18px. clamp() hace que se reduzcan solos en celular */
+
+h1, h2, h3, h4 {
+    color: #ffffff;
+    margin: 0;
+    text-wrap: balance;                     /* Reparte las líneas parejas: evita una palabra huérfana en la última línea */
+}
+
+h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 5rem);     /* De 48px en celular a 80px en pantalla grande */
+    font-weight: 800;                       /* El peso más pesado: es el titular de la página */
+    line-height: 0.95;                      /* Líneas pegadas: los titulares grandes necesitan interlineado corto */
+    letter-spacing: 0.01em;
+    text-transform: uppercase;              /* Mayúsculas, como el "NEGRO + LIMA" de tu referencia */
+    text-align: center;
+    margin: 40px 0 30px;
+}
+
+h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 6vw, 3.25rem); /* De 34px a 52px */
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 56px 0 30px;
+}
+
+h3 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;                     /* 28px: subtítulo de sección */
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 36px 0 16px;
+}
+
+/* h4 NO va en mayúsculas: muchos son nombres de etiquetas (<!DOCTYPE html>, <h1>...) y deben mostrarse tal cual */
+h4 {
+    font-family: var(--font-body);
+    font-size: 1.15rem;                     /* 18px: título de cada card del catálogo */
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    margin: 0 0 14px;
+}
+
+/* Subtítulo bajo el h2 (la frase de introducción): más grande y apagado, para que no compita con el título */
+main > section > p {
+    max-width: 62ch;                        /* Ancho de lectura cómodo */
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-soft);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Código dentro de párrafos: etiqueta neutra en fuente mono */
+code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 2px 6px;
+    color: var(--text);
+}
+
+/* Barrita lima debajo de cada título de sección: es el toque de marca más visible */
+h2::after {
+    content: "";
+    display: block;
+    width: 56px;                            /* Largo de la barra. Con 120px se ve más como subrayado */
+    height: 5px;                            /* Grosor */
+    margin: 14px auto 0;                    /* Separada 14px del título y centrada */
+    border-radius: 999px;
+    background: var(--lime);
+}
+
+
+/* ======================= CARDS CON EFECTO VIDRIO (GLASSMORPHISM) ======================= */
+
+.card {
+    background: rgba(26, 26, 26, 0.72);     /* Fondo negro translúcido, neutro, estilo nav */
+    backdrop-filter: blur(12px);           /* Efecto vidrio esmerilado */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Borde sutil luminoso */
+    border-radius: 16px;                   /* Esquinas redondeadas modernas */
+    padding: 28px;                         /* Espacio interno cómodo */
+    margin-bottom: 24px;                   /* Separación */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 255, 63, 0.45); /* Al pasar el mouse el borde se enciende en lima */
+}
+
+.card p, .card li {
+    color: #D4D4D4;
+    line-height: 1.6;
+}
+
+/* ======================= NAVEGACIÓN POR PESTAÑAS (BOTONES) ======================= */
+
+.catalog-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-soft);
+    padding: 10px 18px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    background: rgba(212, 255, 63, 0.10);
+    color: var(--lime);
+}
+
+.tab-btn.active {
+    background: var(--lime);                /* Pestaña activa: bloque lima sólido */
+    color: var(--black);                    /* Letra negra: 16.8:1 de contraste */
+    border-color: var(--lime);
+    box-shadow: 0 4px 18px var(--lime-glow);
+}
+
+.category-group {
+    display: none; /* Ocultas por defecto, se muestran con JS */
+}
+
+.category-group.active-group {
+    display: block;
+}
+
+/* ======================= VENTANA ESTILO VS CODE ======================= */
+
+.vscode-window {
+    background-color: #1e1e1e;              /* Color clásico de fondo de VS Code */
+    border: 1px solid #333333;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.vscode-titlebar {
+    background-color: #252526;              /* Barra superior de VS Code */
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #333333;
+}
+
+.window-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.filename {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #9cdcfe;                         /* Color azul clásico de nombres en VS Code */
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+}
+
+.interactive-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.interactive-box textarea {
+    width: 100%;
+    background-color: #1e1e1e;
+    color: #d4d4d4;                         /* Texto de código estándar en VS Code */
+    border: none;
+    padding: 14px;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Botón de copiar integrado en la esquina inferior */
+.btn-copiar {
+    align-self: flex-end;
+    margin: 0 10px 10px 0;
+    width: 90px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+    box-sizing: border-box;
+    flex-shrink: 0;
+    outline: none;
+    transition: box-shadow 180ms ease;
+}
+
+.btn-copiar .texto {
+    width: 65%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    background-color: transparent;
+}
+
+.btn-copiar .icono {
+    width: 35%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    background-color: transparent;
+}
+
+/* El botón conserva su aspecto al pasar el cursor: sin franjas blancas ni cambios bruscos. */
+.btn-copiar:hover .texto { background-color: transparent; }
+.btn-copiar:hover .icono { background-color: transparent; }
+.btn-copiar:hover {
+    box-shadow: 0 3px 10px var(--lime-glow);
+}
+.btn-copiar:active {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+}
+.btn-copiar:focus:not(:focus-visible) {
+    outline: none;
+}
+.btn-copiar:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 3px;
+}
+
+/* ======================= BARRA DE NAVEGACIÓN SUPERIOR ======================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--black);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+nav > ul {
+    list-style: none;
+    margin: 0;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+nav > ul > li {
+    position: relative;
+}
+
+nav a {
+    display: block;
+    padding: 10px 18px;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:hover,
+nav li:focus-within > a {
+    background-color: rgba(212, 255, 63, 0.10);
+    color: var(--lime);                     /* El acento aparece al pasar el mouse por la nav */
+}
+
+nav > ul > li:has(ul) > a::after {
+    content: " ▾";
+    font-size: 0.8em;
+}
+
+nav ul ul {
+    display: none;
+    position: absolute;
+    top: calc(100% + 18px);                 /* Sale por debajo de la píldora, no dentro de ella */
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 300px;
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    background: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+nav li:hover > ul,
+nav li:focus-within > ul {
+    display: block;
+}
+
+/* Puente invisible: cubre el hueco entre el botón y el submenú para que no se cierre al bajar el mouse */
+nav ul ul::before {
+    content: "";
+    position: absolute;
+    top: -22px;
+    left: 0;
+    right: 0;
+    height: 22px;
+}
+
+nav ul ul a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+}
+
+/* ======================= SCROLL Y FOOTER ======================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+section[id] {
+    scroll-margin-top: 80px;
+}
+
+footer {
+    background-color: var(--black);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 60px;
+}
+
+footer p {
+    margin: 6px 0;
+}
+
+footer a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+footer a:hover {
+    background-color: rgba(212, 255, 63, 0.10);
+    color: var(--lime);
+}
+/* ======================= ANIMACIÓN DE APARICIÓN SUAVE ======================= */
+
+@keyframes fadeScale {
+    0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+        filter: blur(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Aplicamos la animación suave a las cards al aparecer */
+.card {
+    animation: fadeScale 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.category-group.active-group {
+    display: block;
+}
+/* ======================= AJUSTES GLASSMORPHISM / LIQUID GLASS ======================= */
+
+/* Botón de copiar: una sola pieza, integrado en la ventana de código */
+.interactive-box {
+    position: relative;
+    gap: 0;
+    background: rgba(18, 18, 18, 0.96);
+}
+
+.interactive-box textarea {
+    display: block;
+    padding: 16px 16px 18px;
+    background: transparent;
+}
+
+.btn-copiar {
+    align-self: flex-end;
+    margin: 0 12px 12px 0;
+    width: auto;
+    min-width: 92px;
+    height: 34px;
+    gap: 9px;
+    padding: 0 11px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9px;
+    overflow: hidden;
+    color: var(--black);                    /* Texto e ícono negros sobre lima */
+    background: linear-gradient(135deg, var(--lime), var(--lime-dark));
+    box-shadow: 0 4px 14px var(--lime-glow), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.btn-copiar .texto,
+.btn-copiar .icono {
+    width: auto;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    background: transparent;
+}
+
+.btn-copiar .texto {
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.btn-copiar .icono svg {
+    fill: currentColor;                     /* El ícono toma el color del texto (negro) en vez del fill="white" del HTML */
+    display: block;
+    width: 12px;
+    height: 14px;
+}
+
+.btn-copiar:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #E2FF6B, var(--lime));
+    box-shadow: 0 7px 20px var(--lime-glow), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.btn-copiar:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.btn-copiar:focus-visible,
+nav a:focus-visible,
+footer a:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 3px;
+}
+
+/* Barra superior con vidrio líquido */
+header {
+    background: linear-gradient(115deg, rgba(13, 13, 13, 0.78), rgba(30, 30, 30, 0.58));
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+nav > ul {
+    padding: 12px 20px;
+    gap: 10px;
+}
+
+nav > ul > li > a {
+    border: 1px solid transparent;
+    border-radius: 12px;
+}
+
+nav a:hover,
+nav li:focus-within > a {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045));
+    border-color: rgba(255, 255, 255, 0.13);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+nav ul ul {
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.97), rgba(13, 13, 13, 0.96)); /* Casi opaco: el texto de atrás no debe verse a través */
+    -webkit-backdrop-filter: blur(24px) saturate(155%);
+    backdrop-filter: blur(24px) saturate(155%);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Pie de página a juego con la navegación */
+footer {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(120deg, rgba(26, 26, 26, 0.8), rgba(13, 13, 13, 0.7));
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -70px;
+    left: 50%;
+    width: min(560px, 80vw);
+    height: 150px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(212, 255, 63, 0.08), transparent 70%);
+    pointer-events: none;
+}
+
+footer a {
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(255, 255, 255, 0.035);
+    transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+footer a:hover {
+    background: rgba(212, 255, 63, 0.10);
+    border-color: rgba(212, 255, 63, 0.4);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+    nav > ul {
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 8px 10px;
+    }
+
+    nav a {
+        padding: 9px 11px;
+        font-size: 0.9rem;
+    }
+
+    nav ul ul {
+        left: 0;
+        transform: none;
+        min-width: min(280px, 85vw);
+    }
+
+    .btn-copiar {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-copiar,
+    nav a,
+    footer a {
+        transition: none;
+    }
+}
+
+/* ======================= NAVBAR FLOTANTE (VIDRIO CASI TRANSPARENTE) ======================= */
+header {
+    position: fixed;                        /* Flota sobre el contenido y no se mueve al hacer scroll */
+    top: 16px;                              /* Separada 16px del borde de arriba */
+    left: 50%;
+    transform: translateX(-50%);            /* Centrada horizontalmente */
+    width: max-content;                     /* Mide solo lo que ocupan los botones */
+    max-width: calc(100% - 32px);           /* En pantallas pequeñas deja 16px a cada lado */
+    z-index: 1000;                          /* Siempre por encima del contenido */
+    padding: 4px 6px;                       /* Aire entre el borde de la píldora y los botones */
+    background: rgba(255, 255, 255, 0.05); /* Blanco al 5%: el vidrio casi transparente de la referencia. Súbelo a 0.10 si se pierde */
+    -webkit-backdrop-filter: blur(15px);    /* Desenfoque de lo que pasa por detrás (Safari) */
+    backdrop-filter: blur(15px);            /* Desenfoque de lo que pasa por detrás */
+    border: 0.5px solid #ccc;               /* Borde finísimo y claro, como el canto de un cristal */
+    border-radius: 60px;                    /* Forma de píldora */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Sombra profunda que la despega de la página */
+    isolation: isolate;
+}
+
+nav > ul {
+    padding: 7px 9px;
+    gap: 5px;
+}
+
+nav > ul > li > a {
+    border-radius: 999px;                   /* Botones en píldora, a juego con la barra */
+    white-space: nowrap;
+}
+
+/* Compensa la navbar fija para que no tape el encabezado de la página */
+main {
+    padding-top: 82px;
+}
+
+@media (max-width: 640px) {
+    header {
+        top: 10px;
+        max-width: calc(100% - 20px);
+        width: max-content;
+        border-radius: 28px;
+    }
+
+    nav > ul {
+        justify-content: center;
+        padding: 6px;
+        gap: 2px;
+    }
+
+    nav > ul > li > a {
+        white-space: normal;
+        text-align: center;
+    }
+
+    main {
+        padding-top: 100px;
+    }
+}
+
+/* ======================= INDICADOR DESLIZANTE EN LA NAV ======================= */
+/* Copiado del efecto del video: una píldora que viaja de un botón al siguiente y vuelve al activo.
+   La curva y la duración (0.4s, arranque suave, frenada larga) salen de medir el video cuadro por cuadro. */
+
+nav {
+    position: relative;                     /* Punto de referencia para ubicar la píldora */
+}
+
+nav .indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;                               /* Ancho, alto y posición los pone el script según el botón */
+    height: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--lime), var(--lime-dark)); /* Lima de la paleta (el video usa cian) */
+    box-shadow: 0 4px 18px var(--lime-glow), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    opacity: 0;                             /* Oculta hasta que el script la posiciona: evita un salto al cargar */
+    pointer-events: none;                   /* No intercepta clics: los recibe el botón de abajo */
+    z-index: 0;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.25, 1),
+                width 0.4s cubic-bezier(0.65, 0, 0.25, 1),
+                height 0.4s cubic-bezier(0.65, 0, 0.25, 1),
+                opacity 0.2s ease;          /* 0.4s: lo que dura cada salto en el video. Con 0.6s se siente más lento y flotante */
+}
+
+nav.has-indicator .indicator {
+    opacity: 1;
+}
+
+nav.has-indicator > ul {
+    position: relative;
+    z-index: 1;                             /* Los botones quedan por encima de la píldora */
+}
+
+/* Con el indicador activo, los botones principales ya no se pintan solos al pasar el mouse: lo hace la píldora */
+nav.has-indicator > ul > li > a {
+    transition: color 0.15s ease 0.12s;     /* Al irse la píldora, el texto vuelve a claro con un pequeño retraso */
+}
+
+nav.has-indicator > ul > li > a:hover,
+nav.has-indicator > ul > li:focus-within > a {
+    background: none;
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--text);
+}
+
+/* El botón que está sobre la píldora lleva texto negro (negro sobre lima: 16.8:1) */
+nav.has-indicator > ul > li > a.is-on,
+nav.has-indicator > ul > li > a.is-on:hover,
+nav.has-indicator > ul > li:focus-within > a.is-on {
+    color: var(--black);
+    transition-delay: 0.2s;                 /* El texto se oscurece justo cuando la píldora llega, no antes */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    nav .indicator,
+    nav.has-indicator > ul > li > a {
+        transition: none;
+    }
+}
